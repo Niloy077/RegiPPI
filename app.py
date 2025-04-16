@@ -3,7 +3,7 @@ import streamlit as st
 # --- PAGE CONFIG ---
 st.set_page_config(page_title="PPI Analyzer", layout="wide")
 
-# --- Initialize session state ---
+# --- Session state for active page ---
 if "active_page" not in st.session_state:
     st.session_state.active_page = "RegiPPI"
 
@@ -15,52 +15,62 @@ st.markdown("""
             color: white;
         }
 
-        .nav-link {
-            display: block;
+        .nav-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .stButton>button {
             width: 100%;
             text-align: left;
             padding: 0.75rem 1rem;
-            margin: 0.25rem 0;
+            border-radius: 8px;
             background-color: #44446F;
             color: white;
             border: none;
             font-size: 16px;
-            border-radius: 5px;
             transition: background-color 0.3s;
         }
 
-        .nav-link:hover {
+        .stButton>button:hover {
             background-color: #5858ad;
-            cursor: pointer;
         }
 
+        .stButton>button.active {
+            background-color: #7070db !important;
+        }
 
     </style>
 """, unsafe_allow_html=True)
 
-# --- SIDEBAR ---
+# --- SIDEBAR NAVIGATION ---
 with st.sidebar:
     st.image("logo.png", use_container_width=True)
+    st.markdown('<div class="nav-container">', unsafe_allow_html=True)
 
-    nav_items = ["RegiPPI", "Embedding Explorer", "Model Inference","About"]
+    nav_items = ["RegiPPI", "Embedding Explorer", "Model Inference", "About"]
 
     for item in nav_items:
-        is_active = "active" if st.session_state.active_page == item else ""
-        st.markdown(
-            f"""
-            <form action="" method="get">
-                <input type="hidden" name="page" value="{item}">
-                <button class="nav-link {is_active}" type="submit">{item}</button>
-            </form>
-            """,
-            unsafe_allow_html=True
-        )
+        # Render button and track if clicked
+        if st.button(item, key=f"nav_{item}"):
+            st.session_state.active_page = item
 
-# --- Handle navigation based on query params ---
-query_params = st.query_params
-if "page" in query_params:
-    selected_page = query_params["page"]
-    st.session_state.active_page = selected_page
+        # Inject custom class for active one
+        st.markdown(f"""
+            <script>
+                const btn = window.parent.document.querySelectorAll('button[kind="secondary"][data-testid="stButton"]');
+                const labels = {nav_items};
+                const active = "{st.session_state.active_page}";
+                btn.forEach((b, i) => {{
+                    if (b.innerText.trim() === active) {{
+                        b.classList.add("active");
+                    }}
+                }});
+            </script>
+        """, unsafe_allow_html=True)
+
+    st.markdown('</div>', unsafe_allow_html=True)
 
 # --- MAIN CONTENT ---
 st.title("Protein-Protein Interaction Analysis Platform")
