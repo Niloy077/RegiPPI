@@ -1,4 +1,21 @@
 import streamlit as st
+import os
+import sys
+
+#graph section
+graph_app_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'graph_app'))
+if graph_app_path not in sys.path:
+    sys.path.append(graph_app_path)
+
+from test_app import run as graph_run  # This assumes test_app.py has a `run()` function
+
+
+# About section
+about_app_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'about_app'))
+if about_app_path not in sys.path:
+    sys.path.append(about_app_path)
+    
+from about_app import run as run_about
 
 # --- PAGE CONFIG ---
 st.set_page_config(page_title="PPI Analyzer", layout="wide")
@@ -46,10 +63,10 @@ st.markdown("""
 
 # --- SIDEBAR NAVIGATION ---
 with st.sidebar:
-    st.image("logo.png", use_container_width=True)
+    st.image("logo2.png", use_container_width=True)
     st.markdown('<div class="nav-container">', unsafe_allow_html=True)
 
-    nav_items = ["RegiPPI", "Embedding Explorer", "Model Inference", "About"]
+    nav_items = ["RegiPPI", "Embedding Graph", "3D Structure Prediction", "About"]
 
     for item in nav_items:
         # Render button and track if clicked
@@ -79,14 +96,12 @@ if st.session_state.active_page == "RegiPPI":
     st.header("🔬 RegiPPI")
     st.write("RegiPPI Section Content...")
 
-elif st.session_state.active_page == "Embedding Explorer":
-    st.header("🧬 Embedding Explorer")
-    st.write("Embedding Explorer Content...")
+elif st.session_state.active_page == "Embedding Graph":
+    graph_run()
 
-elif st.session_state.active_page == "Model Inference":
+elif st.session_state.active_page == "3D Structure Prediction":
     st.header("🧠 Siamese Network Inference")
     st.write("Model Inference Content...")
 
 elif st.session_state.active_page == "About":
-    st.header("📘 About")
-    st.write("This app analyzes protein-protein interactions using various tools.")
+    run_about()
