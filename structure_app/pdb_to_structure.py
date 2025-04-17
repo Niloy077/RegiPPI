@@ -42,7 +42,7 @@ def run():
     with col2:
         st.header("🧪 3D Protein Structure")
         if pdb_data:
-            view = py3Dmol.view(width=600, height=400)
+            view = py3Dmol.view(width=400, height=400)
             view.addModelsAsFrames(pdb_data)
             view.setStyle({'model': -1}, {"cartoon": {'color': 'spectrum'}})
             view.zoomTo()
