@@ -36,6 +36,12 @@ st.markdown("""
             color: white;
         }
 
+        
+        section[data-testid="stSidebar"] [data-testid="baseButton-sidebarCollapseControl"] {
+            color: white !important;
+        }
+
+
         .nav-container {
             display: flex;
             flex-direction: column;
