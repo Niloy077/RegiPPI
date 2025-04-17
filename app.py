@@ -2,25 +2,29 @@ import streamlit as st
 import os
 import sys
 
-#graph section
+# --- PATH SETUP FOR SUB-APPS ---
+# Graph section
 graph_app_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'graph_app'))
 if graph_app_path not in sys.path:
     sys.path.append(graph_app_path)
+from test_app import run as graph_run  # Assumes test_app.py has a `run()` function
 
-from test_app import run as graph_run  # This assumes test_app.py has a `run()` function
-
+# 3D structure section
+structure_app_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'structure_app'))
+if structure_app_path not in sys.path:
+    sys.path.append(structure_app_path)
+from pdb_to_structure import run as structure_run
 
 # About section
 about_app_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'about_app'))
 if about_app_path not in sys.path:
     sys.path.append(about_app_path)
-    
 from about_app import run as run_about
 
 # --- PAGE CONFIG ---
 st.set_page_config(page_title="PPI Analyzer", layout="wide")
 
-# --- Session state for active page ---
+# --- SESSION STATE ---
 if "active_page" not in st.session_state:
     st.session_state.active_page = "RegiPPI"
 
@@ -57,7 +61,6 @@ st.markdown("""
         .stButton>button.active {
             background-color: #7070db !important;
         }
-
     </style>
 """, unsafe_allow_html=True)
 
@@ -69,11 +72,10 @@ with st.sidebar:
     nav_items = ["RegiPPI", "Embedding Graph", "3D Structure Prediction", "About"]
 
     for item in nav_items:
-        # Render button and track if clicked
         if st.button(item, key=f"nav_{item}"):
             st.session_state.active_page = item
 
-        # Inject custom class for active one
+        # Highlight active page
         st.markdown(f"""
             <script>
                 const btn = window.parent.document.querySelectorAll('button[kind="secondary"][data-testid="stButton"]');
@@ -90,9 +92,8 @@ with st.sidebar:
     st.markdown('</div>', unsafe_allow_html=True)
 
 # --- MAIN CONTENT ---
-st.title("Protein-Protein Interaction Analysis Platform")
-
 if st.session_state.active_page == "RegiPPI":
+    st.title("Protein-Protein Interaction Analysis Platform")
     st.header("🔬 RegiPPI")
     st.write("RegiPPI Section Content...")
 
@@ -100,8 +101,7 @@ elif st.session_state.active_page == "Embedding Graph":
     graph_run()
 
 elif st.session_state.active_page == "3D Structure Prediction":
-    st.header("🧠 Siamese Network Inference")
-    st.write("Model Inference Content...")
+    structure_run()
 
 elif st.session_state.active_page == "About":
     run_about()
