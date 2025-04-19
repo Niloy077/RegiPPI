@@ -1,4 +1,6 @@
 streamlit
+biopython
+Pillow
 pandas
 networkx
 pyvis
