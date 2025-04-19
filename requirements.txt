@@ -1,6 +1,8 @@
 streamlit
 biopython
 Pillow
+transformers
+torch  
 pandas
 networkx
 pyvis
