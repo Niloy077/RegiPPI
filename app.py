@@ -81,7 +81,7 @@ with st.sidebar:
     st.image("logo2.png", use_container_width=True)
     st.markdown('<div class="nav-container">', unsafe_allow_html=True)
 
-    nav_items = ["RegiPPI", "Embedding Graph", "3D Structure Prediction", "About"]
+    nav_items = ["RegiPPI", "Protein Network", "3D Structure Prediction", "About"]
 
     for item in nav_items:
         if st.button(item, key=f"nav_{item}"):
@@ -107,7 +107,7 @@ with st.sidebar:
 if st.session_state.active_page == "RegiPPI":
     run_regippi()
 
-elif st.session_state.active_page == "Embedding Graph":
+elif st.session_state.active_page == "Protein Network":
     graph_run()
 
 elif st.session_state.active_page == "3D Structure Prediction":
