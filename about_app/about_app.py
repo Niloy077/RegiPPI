@@ -17,7 +17,7 @@ def run():
     # --- TEAM MEMBERS ---
     st.subheader("👥 Meet the Team")
     team_images = ["team1.jpg", "team2.jpg", "team3.jpg", "team4.jpg"]
-    team_names = ["Tausif", "Niloy", "Nandini", "Riaz"]
+    team_names = ["Tausif Mushtaque", "Niloy Biswas", "Nandini Das", "Syed Riaz"]
 
     cols = st.columns(4)
     for i in range(4):
