@@ -8,3 +8,6 @@ networkx
 pyvis
 py3Dmol
 requests
+scikit-learn
+matplotlib
+numpy
