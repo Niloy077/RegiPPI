@@ -39,10 +39,7 @@ DEFAULT_PDB_FILES = {
     "Protein 3 (8WRW)": "https://files.rcsb.org/download/8WRW.pdb",
     "Protein 4 (9J0Q)": "https://files.rcsb.org/download/9J0Q.pdb",
     "Protein 5 (6U3V)": "https://files.rcsb.org/download/6U3V.pdb",
-    "Protein 6 (8D41)": "https://files.rcsb.org/download/8D41.pdb",
-    "Protein 7 (2B6H)": "https://files.rcsb.org/download/2B6H.pdb",
-    "Protein 8 (4UJ4)": "https://files.rcsb.org/download/4UJ4.pdb",
-    "Protein 9 (5H3D)": "https://files.rcsb.org/download/5H3D.pdb"
+    "Protein 6 (8D41)": "https://files.rcsb.org/download/8D41.pdb"
 }
 
 # Fetch PDB file from URL
