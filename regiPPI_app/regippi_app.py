@@ -51,8 +51,8 @@ def fetch_pdb_from_url(url):
 
 # Main Run Function
 def run():
-    st.title("🔬 Protein Embedding Visualizer")
-    st.subheader("Visualize and compare protein embeddings. 🚀")
+    st.title("🔬 Protein Interaction Visualizer")
+    st.subheader("Visualize and compare protein interaction. 🚀")
     st.write("Upload your own **PDB files**, or select from our default proteins.")
 
     uploaded_files = st.file_uploader("📂 Upload PDB Files", type=["pdb"], accept_multiple_files=True)

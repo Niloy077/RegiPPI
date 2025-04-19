@@ -1,13 +1,42 @@
 import streamlit as st
 from PIL import Image
+import base64
+import os
 
+# --- Helper to convert image to base64 ---
+def get_base64_image(image_path):
+    with open(image_path, "rb") as img_file:
+        return base64.b64encode(img_file.read()).decode()
+
+# --- Main run function ---
 def run():
+     # Must be the FIRST Streamlit command
+
     st.header("📘 About REGi-PPI")
-    
-    st.markdown("""
-    **REGi-PPI** (Regression Based Edge Prediction of Protein-Protein Interaction) is a deep learning model designed to predict PPI edges using Graph Neural Networks.  
-    It is built to determine potential interactions of unknown proteins within a PPI network and assign interaction scores.
-    """)
+
+    # --- TEAM MEMBERS ---
+    st.subheader("👥 Meet the Team")
+    team_images = ["team1.jpg", "team2.jpg", "team3.jpg", "team4.jpg"]
+    team_names = ["Tausif", "Niloy", "Nandini", "Riaz"]
+
+    cols = st.columns(4)
+    for i in range(4):
+        with cols[i]:
+            img_path = os.path.join(os.path.dirname(__file__), team_images[i])
+            if os.path.exists(img_path):
+                img_base64 = get_base64_image(img_path)
+                st.markdown(
+                    f"""
+                    <div style="text-align:center">
+                        <img src="data:image/jpeg;base64,{img_base64}" 
+                             style="border-radius: 50%; width: 150px; height: 150px; object-fit: cover; margin-bottom: 10px;" />
+                        <div style="font-weight: bold;">{team_names[i]}</div>
+                    </div>
+                    """,
+                    unsafe_allow_html=True
+                )
+            else:
+                st.warning(f"Image {team_images[i]} not found!")
 
     st.markdown("---")
     st.subheader("📊 System Diagram & Methodology")
@@ -28,8 +57,11 @@ def run():
         The model enables edge-level prediction and regression — predicting both presence and interaction strength.
         """)
     with col2:
-        image = Image.open("about_app/model_image.png")  # Your workflow/architecture image
-        st.image(image, caption="Figure: REGi-PPI Workflow", use_container_width=True)
+        image_path = os.path.join(os.path.dirname(__file__), "model_image.png")
+        if os.path.exists(image_path):
+            st.image(image_path, caption="Figure: REGi-PPI Workflow", use_container_width=True)
+        else:
+            st.warning("Workflow image not found!")
 
     st.markdown("---")
     st.subheader("🚀 Novelty of REGi-PPI")
@@ -60,9 +92,12 @@ def run():
     st.markdown("---")
     st.subheader("🧪 Results")
     col1, col2, col3 = st.columns(3)
-    col1.image("about_app/result1.png", caption="Result 1", use_container_width=True)
-    col2.image("about_app/result2.png", caption="Result 2", use_container_width=True)
-    col3.image("about_app/result3.png", caption="Result 3", use_container_width=True)
+    for col, name in zip([col1, col2, col3], ["result1.png", "result2.png", "result3.png"]):
+        img_path = os.path.join(os.path.dirname(__file__), name)
+        if os.path.exists(img_path):
+            col.image(img_path, caption=name.replace(".png", "").capitalize(), use_container_width=True)
+        else:
+            col.warning(f"{name} not found!")
 
     st.markdown("---")
     st.subheader("📌 Conclusion")
