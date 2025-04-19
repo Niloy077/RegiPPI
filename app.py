@@ -81,7 +81,7 @@ with st.sidebar:
     st.image("logo2.png", use_container_width=True)
     st.markdown('<div class="nav-container">', unsafe_allow_html=True)
 
-    nav_items = ["RegiPPI", "Protein Network", "3D Structure Prediction", "About"]
+    nav_items = ["RegiPPI", "Protein Network", "3D Structure of Protein", "About"]
 
     for item in nav_items:
         if st.button(item, key=f"nav_{item}"):
@@ -110,7 +110,7 @@ if st.session_state.active_page == "RegiPPI":
 elif st.session_state.active_page == "Protein Network":
     graph_run()
 
-elif st.session_state.active_page == "3D Structure Prediction":
+elif st.session_state.active_page == "3D Structure of Protein":
     structure_run()
 
 elif st.session_state.active_page == "About":
