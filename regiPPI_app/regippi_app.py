@@ -34,10 +34,15 @@ def extract_sequence_from_pdb(pdb_file):
 
 # Default PDB files (URLs)
 DEFAULT_PDB_FILES = {
-    "Protein 1 (1A3N)": "https://files.rcsb.org/download/1A3N.pdb",
+    "Protein 1 (9J82)": "https://files.rcsb.org/download/9J82.pdb",
     "Protein 2 (4QQI)": "https://files.rcsb.org/download/4QQI.pdb",
-    "Protein 3 (2DN2)": "https://files.rcsb.org/download/2DN2.pdb",
-    "Protein 4 (9J82)": "https://files.rcsb.org/download/9J82.pdb"
+    "Protein 3 (8WRW)": "https://files.rcsb.org/download/8WRW.pdb",
+    "Protein 4 (9J0Q)": "https://files.rcsb.org/download/9J0Q.pdb",
+    "Protein 5 (6U3V)": "https://files.rcsb.org/download/6U3V.pdb",
+    "Protein 6 (8D41)": "https://files.rcsb.org/download/8D41.pdb",
+    "Protein 7 (2B6H)": "https://files.rcsb.org/download/2B6H.pdb",
+    "Protein 8 (4UJ4)": "https://files.rcsb.org/download/4UJ4.pdb",
+    "Protein 9 (5H3D)": "https://files.rcsb.org/download/5H3D.pdb"
 }
 
 # Fetch PDB file from URL
