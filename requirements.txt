@@ -1,6 +1,9 @@
 streamlit
 biopython
 Pillow
+scikit-learn
+matplotlib
+numpy
 transformers
 torch  
 pandas
@@ -8,6 +11,4 @@ networkx
 pyvis
 py3Dmol
 requests
-scikit-learn
-matplotlib
-numpy
+
