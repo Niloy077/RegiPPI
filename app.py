@@ -3,6 +3,15 @@ import os
 import sys
 
 # --- PATH SETUP FOR SUB-APPS ---
+# --- PAGE CONFIG ---
+st.set_page_config(page_title="PPI Analyzer", layout="wide")
+
+#RegiPPI
+regiPPI_app_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'regiPPI_app'))
+if regiPPI_app_path not in sys.path:
+    sys.path.append(regiPPI_app_path)
+from regippi_app import run as run_regippi  
+
 # Graph section
 graph_app_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'graph_app'))
 if graph_app_path not in sys.path:
@@ -21,8 +30,7 @@ if about_app_path not in sys.path:
     sys.path.append(about_app_path)
 from about_app import run as run_about
 
-# --- PAGE CONFIG ---
-st.set_page_config(page_title="PPI Analyzer", layout="wide")
+
 
 # --- SESSION STATE ---
 if "active_page" not in st.session_state:
@@ -36,11 +44,9 @@ st.markdown("""
             color: white;
         }
 
-        
         section[data-testid="stSidebar"] [data-testid="baseButton-sidebarCollapseControl"] {
             color: white !important;
         }
-
 
         .nav-container {
             display: flex;
@@ -99,9 +105,7 @@ with st.sidebar:
 
 # --- MAIN CONTENT ---
 if st.session_state.active_page == "RegiPPI":
-    st.title("Protein-Protein Interaction Analysis Platform")
-    st.header("🔬 RegiPPI")
-    st.write("RegiPPI Section Content...")
+    run_regippi()
 
 elif st.session_state.active_page == "Embedding Graph":
     graph_run()
