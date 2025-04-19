@@ -2,7 +2,7 @@ streamlit
 biopython
 Pillow
 scikit-learn
-matplotlib
+matplotlib==3.10.1
 numpy
 transformers
 torch  
