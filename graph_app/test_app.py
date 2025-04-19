@@ -134,7 +134,7 @@ def run():
             st.session_state.selected_proteins.remove(protein_to_remove)
             st.rerun()
 
-    max_neighbors = st.slider("Select number of nearest neighbors per protein:", 5, 100, 5, step=5)
+    max_neighbors = st.slider("Select number of nearest neighbors per protein:", 5, 15, 5, step=5)
 
     subgraph = create_subgraph(G, st.session_state.selected_proteins, max_neighbors=max_neighbors)
     html_file = visualize_graph(subgraph, st.session_state.selected_proteins)
