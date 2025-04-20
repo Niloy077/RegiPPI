@@ -141,5 +141,4 @@ def run():
     if st.button("🔄 Clear All Proteins"):
         st.session_state.all_proteins = {}
 
-# Call the run function
-run()
+
