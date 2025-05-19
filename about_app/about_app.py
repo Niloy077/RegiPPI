@@ -15,28 +15,28 @@ def run():
     st.header("📘 About REGi-PPI")
 
     # --- TEAM MEMBERS ---
-    st.subheader("👥 Meet the Team")
-    team_images = ["team1.jpg", "team2.jpg", "team3.jpg", "team4.jpg"]
-    team_names = ["Tausif Mushtaque", "Niloy Biswas", "Nandini Das", "Syed Riaz"]
+    # st.subheader("👥 Meet the Team")
+    # team_images = ["team1.jpg", "team2.jpg", "team3.jpg", "team4.jpg"]
+    # team_names = ["Tausif Mushtaque", "Niloy Biswas", "Nandini Das", "Syed Riaz"]
 
-    cols = st.columns(4)
-    for i in range(4):
-        with cols[i]:
-            img_path = os.path.join(os.path.dirname(__file__), team_images[i])
-            if os.path.exists(img_path):
-                img_base64 = get_base64_image(img_path)
-                st.markdown(
-                    f"""
-                    <div style="text-align:center">
-                        <img src="data:image/jpeg;base64,{img_base64}" 
-                             style="border-radius: 50%; width: 150px; height: 150px; object-fit: cover; margin-bottom: 10px;" />
-                        <div style="font-weight: bold;">{team_names[i]}</div>
-                    </div>
-                    """,
-                    unsafe_allow_html=True
-                )
-            else:
-                st.warning(f"Image {team_images[i]} not found!")
+    # cols = st.columns(4)
+    # for i in range(4):
+    #     with cols[i]:
+    #         img_path = os.path.join(os.path.dirname(__file__), team_images[i])
+    #         if os.path.exists(img_path):
+    #             img_base64 = get_base64_image(img_path)
+    #             st.markdown(
+    #                 f"""
+    #                 <div style="text-align:center">
+    #                     <img src="data:image/jpeg;base64,{img_base64}" 
+    #                          style="border-radius: 50%; width: 150px; height: 150px; object-fit: cover; margin-bottom: 10px;" />
+    #                     <div style="font-weight: bold;">{team_names[i]}</div>
+    #                 </div>
+    #                 """,
+    #                 unsafe_allow_html=True
+    #             )
+    #         else:
+    #             st.warning(f"Image {team_images[i]} not found!")
 
     st.markdown("---")
     st.subheader("📊 System Diagram & Methodology")
