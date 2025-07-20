@@ -12,7 +12,7 @@ import io
 def load_data():
     try:
         # Load the CSV from an S3 URL
-        csv_url = "https://www.dropbox.com/scl/fi/lcbglaqen9nwouc55yckt/new_dataset.csv?rlkey=alidm2r5boqo7qtdyb0e5vxid&st=ub7g08fn&dl=1"  # link to download new_dataset.csv
+        csv_url = "https://www.dropbox.com/scl/fi/yoo4teor9y40nrprc1say/new_dataset.csv?rlkey=i63ryqm24yi3ll3gbarsac759&st=a98np6kp&dl=1"  # link to download new_dataset.csv
         st.text("Downloading PPI data... This may take a moment.")
         response_csv = requests.get(csv_url)
         response_csv.raise_for_status()  # Check for request errors
