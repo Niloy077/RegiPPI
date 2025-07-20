@@ -27,7 +27,7 @@ def load_data():
         st.info(f"Loaded {len(ppi_data)} interactions from new_dataset.csv.")
         
         # Load the Pickle file from an S3 URL
-        pkl_url = "https://drive.google.com/uc?export=download&id=14OQ_urDTncZsskkVPWx20yGwewwn-6_i"  # link to download protbert_embeddings.pkl
+        pkl_url = "https://drive.google.com/file/d/1ghK2OxRONiEoMl5fOZ1KnDvRZxzVMaer"  # link to download protbert_embeddings.pkl
         st.text("Downloading embeddings... This may take a moment.")
         response_pkl = requests.get(pkl_url)
         response_pkl.raise_for_status()  # Check for request errors
