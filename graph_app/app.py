@@ -12,14 +12,19 @@ import io
 def load_data():
     try:
         # Load the CSV from an S3 URL
-        csv_url = "https://www.dropbox.com/scl/fi/yoo4teor9y40nrprc1say/new_dataset.csv?rlkey=i63ryqm24yi3ll3gbarsac759&st=a98np6kp&dl=1"  # link to download new_dataset.csv
+        csv_url = "https://huggingface.co/datasets/Kalpurush/ppi_data/resolve/main/new_dataset.csv"
         st.text("Downloading PPI data... This may take a moment.")
         response_csv = requests.get(csv_url)
         response_csv.raise_for_status()  # Check for request errors
         if response_csv.status_code == 200:
             st.success("PPI data downloaded successfully!")
-        ppi_data = pd.read_csv(io.StringIO(response_csv.text))
-        
+        ppi_data = pd.read_csv(csv_url,sep="\t")
+        ppi_data.columns = (
+            ppi_data.columns
+            .str.strip()          # remove spaces
+            .str.replace("\ufeff", "", regex=False)  # remove BOM
+        )        
+    
         # Verify that ppi_data is not empty
         if ppi_data.empty:
             st.error("PPI data is empty. Please check the CSV file.")
@@ -27,7 +32,7 @@ def load_data():
         st.info(f"Loaded {len(ppi_data)} interactions from new_dataset.csv.")
         
         # Load the Pickle file from an S3 URL
-        pkl_url = "https://drive.google.com/file/d/1ghK2OxRONiEoMl5fOZ1KnDvRZxzVMaer"  # link to download protbert_embeddings.pkl
+        pkl_url = "https://drive.google.com/uc?export=download&id=1ghK2OxRONiEoMl5fOZ1KnDvRZxzVMaer"  # link to download protbert_embeddings.pkl
         st.text("Downloading embeddings... This may take a moment.")
         response_pkl = requests.get(pkl_url)
         response_pkl.raise_for_status()  # Check for request errors

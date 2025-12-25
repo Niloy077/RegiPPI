@@ -6,17 +6,24 @@ from streamlit.components.v1 import html
 import pickle
 import requests
 import io
-
+st.warning("RUNNING test_app.py")
 def run():
     st.title("🧬 Protein Graph Visualizer")
 
     @st.cache_data
     def load_data():
         try:
-            csv_url = "https://www.dropbox.com/scl/fi/lcbglaqen9nwouc55yckt/new_dataset.csv?rlkey=alidm2r5boqo7qtdyb0e5vxid&st=ub7g08fn&dl=1"
+            csv_url = "https://huggingface.co/datasets/Kalpurush/ppi_data/resolve/main/new_dataset.csv"
             response_csv = requests.get(csv_url)
             response_csv.raise_for_status()
-            ppi_data = pd.read_csv(io.StringIO(response_csv.text))
+            ppi_data = pd.read_csv(csv_url,sep="\t")
+            ppi_data.columns = (
+                ppi_data.columns
+                .str.strip()          # remove spaces
+                .str.replace("\ufeff", "", regex=False)  # remove BOM
+            )
+            st.write("FINAL COLUMNS:", list(ppi_data.columns))
+
 
             pkl_url = "https://drive.google.com/uc?export=download&id=14OQ_urDTncZsskkVPWx20yGwewwn-6_i"
             response_pkl = requests.get(pkl_url)
