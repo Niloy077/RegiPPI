@@ -1,5 +1,9 @@
 # 🔬 Protein–Protein Interaction (PPI) Visualizer
 
+🧪 **Test Live:**  
+👉 **Live Application:** https://regippi-bylvxuy9q8edt8s5vcyejt.streamlit.app/  
+👉 **Demo Dataset:** Preloaded (no setup required)
+
 An interactive web application to **analyze, visualize, and explore protein–protein interactions** using embedding-based similarity, large-scale interaction networks, and 3D protein structures.
 
 Built with **Streamlit**, **NetworkX**, **PyVis**, and **PyMOL-based 3D visualization**.
