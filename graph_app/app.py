@@ -18,7 +18,7 @@ def load_data():
         response_csv.raise_for_status()  # Check for request errors
         if response_csv.status_code == 200:
             st.success("PPI data downloaded successfully!")
-        ppi_data = pd.read_csv(csv_url,sep="\t")
+        ppi_data = pd.read_csv(csv_url,sep=",")
         ppi_data.columns = (
             ppi_data.columns
             .str.strip()          # remove spaces

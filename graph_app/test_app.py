@@ -6,7 +6,7 @@ from streamlit.components.v1 import html
 import pickle
 import requests
 import io
-st.warning("RUNNING test_app.py")
+# st.warning("RUNNING test_app.py")
 def run():
     st.title("🧬 Protein Graph Visualizer")
 
@@ -16,7 +16,7 @@ def run():
             csv_url = "https://huggingface.co/datasets/Kalpurush/ppi_data/resolve/main/new_dataset.csv"
             response_csv = requests.get(csv_url)
             response_csv.raise_for_status()
-            ppi_data = pd.read_csv(csv_url,sep="\t")
+            ppi_data = pd.read_csv(csv_url,sep=",")
             ppi_data.columns = (
                 ppi_data.columns
                 .str.strip()          # remove spaces
